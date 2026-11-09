@@ -47,6 +47,23 @@ const setTheme = () => {
 
   const packageGrid = document.getElementById('packageGrid');
 
+  // Turn each package name into a link to its GitHub repo (derived from the release zip URL).
+  packageGrid.querySelectorAll('fluent-data-grid-row[data-package-id]').forEach(row => {
+    const zipUrl = row.querySelector('.rowMenuButton')?.dataset?.packageUrl ?? '';
+    const match = zipUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\//);
+    const nameEl = row.querySelector('.packageName');
+    if (!match || !nameEl) return;
+    const link = document.createElement('a');
+    link.href = `https://github.com/${match[1]}`;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.className = 'packageNameLink';
+    link.title = `View ${match[1]} on GitHub`;
+    link.textContent = nameEl.textContent.trim();
+    nameEl.textContent = '';
+    nameEl.appendChild(link);
+  });
+
   const searchInput = document.getElementById('searchInput');
   searchInput.addEventListener('input', ({ target: { value = '' }}) => {
     const items = packageGrid.querySelectorAll('fluent-data-grid-row[row-type="default"]');
