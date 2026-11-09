@@ -354,3 +354,176 @@ h1 {
 .flex-1 {
   flex: 1;
 }
+/* ===================== Theme ===================== */
+:root {
+  --page-bg: #f4f5f9;
+  --page-glow: rgba(124, 92, 255, 0.14);
+  --card-bg: #ffffff;
+  --card-border: #dfe2ea;
+  --row-divider: #eceef3;
+  --row-hover: #f6f4ff;
+  --text-muted: #5b6172;
+  --accent: #6b4cf0;
+  --pill-bg: #efebff;
+  --shadow: 0 1px 2px rgba(20, 20, 40, 0.06), 0 8px 24px rgba(20, 20, 40, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-bg: #111216;
+    --page-glow: rgba(124, 92, 255, 0.18);
+    --card-bg: #1a1c22;
+    --card-border: #2c2f39;
+    --row-divider: #252832;
+    --row-hover: #20222a;
+    --text-muted: #9ba1b0;
+    --accent: #a08bff;
+    --pill-bg: #2a2540;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+}
+
+body {
+  background:
+    radial-gradient(1100px 420px at 50% -120px, var(--page-glow), transparent 70%),
+    var(--page-bg);
+  background-attachment: fixed;
+  min-width: 0;
+  align-items: flex-start;
+}
+
+.content {
+  padding: 3.5rem 1rem 3rem;
+}
+
+#listingInfo h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.02em;
+  margin-top: 0;
+  text-align: center;
+}
+
+#listingInfo .caption1 {
+  color: var(--text-muted);
+  text-align: center;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Listing URL bar */
+.addToVccBlock {
+  width: 100%;
+  max-width: 90%;
+  padding: 0.85rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.addToVccBlock .vccUrlField {
+  min-width: 0;
+  max-width: none;
+}
+
+/* Search */
+.searchBlock #searchInput {
+  border-radius: 8px;
+}
+
+/* Package list card */
+.packages,
+fluent-card.packages {
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+#packageGrid {
+  padding: 0;
+}
+
+#packageGrid fluent-data-grid-row {
+  border-bottom: 1px solid var(--row-divider);
+  padding: 0.6rem 0.75rem;
+  transition: background-color 0.15s ease;
+}
+
+#packageGrid fluent-data-grid-row:last-of-type {
+  border-bottom: none;
+}
+
+#packageGrid fluent-data-grid-row:not([row-type="header"]):hover {
+  background: var(--row-hover);
+}
+
+#packageGrid fluent-data-grid-row[row-type="header"] {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+#packageGrid fluent-data-grid-row[row-type="header"] fluent-data-grid-cell {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.packages .packageName {
+  font-size: 1.15rem;
+}
+
+.packages .caption1 {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  white-space: normal;
+}
+
+/* Package id: small monospace tag */
+.packages .caption2 {
+  align-self: flex-start;
+  margin-top: 0.45rem;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* "Type" column as a pill */
+#packageGrid fluent-data-grid-row:not([row-type="header"]) fluent-data-grid-cell[grid-column="2"] {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.badge {
+  background-color: var(--pill-bg);
+  color: var(--accent);
+}
+
+/* Phones */
+@media (max-width: 640px) {
+  .content { padding-top: 2rem; }
+  #listingInfo h1 { font-size: 2rem; }
+  .addToVccBlock { flex-wrap: wrap; max-width: 100%; }
+  .addToVccBlock .vccUrlField { flex-basis: 100%; margin-bottom: 0.5rem; }
+  .addToVccBlock fluent-button.ms-2:first-of-type { margin-left: 0; }
+  .searchBlock, .packages, fluent-card.packages { max-width: 100%; }
+  #packageGrid { --grid-cols: 1fr; }
+}
