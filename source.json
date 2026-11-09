@@ -12,6 +12,7 @@
     "url": "https://github.com/Garret27/g2727-vpm"
   },
   "githubRepos": [
-    "Garret27/g2727-poiyomi-materials-upgrader"
+    "Garret27/g2727-poiyomi-materials-upgrader",
+    "Garret27/DependencyRerouter"
   ]
 }
